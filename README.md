@@ -111,3 +111,8 @@ Console.WriteLine(list.Sampling<MyClass>("i").str);
 則輸出為AA,BB,CC其中之一，而權重則為5,3,6。
 
 另外物件一樣可以使用Dictionary之外其他集合類型與自訂隨機物件。
+
+#Exception
+當傳入非數值型別，或傳入類別的權重屬性未指定或非數值，則會產生例外：
+
+System.NotFiniteNumberException: Collection Element is not a Number.
