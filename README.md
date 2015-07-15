@@ -7,9 +7,17 @@ C# Collection(except Dictionary) Sampling with weight. Base on IEnumerable gener
 C# .NET 4.5.1
 
 #How to use
-下載CollectionSampling.cs加入專案中，或是下載CollectionSampling.dll並使專案參考它。
+1.下載CollectionSampling.cs加入專案中。Download CollectionSampling.cs file and add it into project.
 
-Download CollectionSampling.cs file and add it into project, or download CollectionSampling.dll and add referance to project.
+2.下載CollectionSampling.dll並使專案參考它。Download CollectionSampling.dll and add referance to project.
+
+3.使用以下NuGet指令：Run the following command in the Package Manager Console:
+
+```
+PM> Install-Package CollectionSampling
+```
+
+4.從NuGet管理員中搜尋CollectionSampling。Search CollectionSampling in the NuGet Manager.
 
 使用命名空間(namespace):System.Collections.Generic.CollectionSampling
 ```C#
