@@ -4,7 +4,7 @@ C#對集合類型(Dictionary除外)以權重進行抽樣。 以IEnumerable的泛
 C# Collection(except Dictionary) Sampling with weight. Base on IEnumerable generic extension method.
 
 #Language and Framework
-C# .NET 4.5.1
+C# .NET 4.5 above
 
 #How to use
 1.下載CollectionSampling.cs加入專案中。Download CollectionSampling.cs file and add it into project.
