@@ -19,7 +19,7 @@ PM> Install-Package CollectionSampling
 
 4.從NuGet管理員中搜尋CollectionSampling。Search CollectionSampling in the NuGet Manager.
 
-使用命名空間(namespace):System.Collections.Generic.CollectionSampling
+使用命名空間(namespace):
 ```C#
 using System.Collections.Generic.CollectionSampling;
 ```
