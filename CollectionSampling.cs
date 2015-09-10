@@ -190,7 +190,7 @@ namespace System.Collections.Generic.CollectionSampling
         /// </summary>
         /// <typeparam name="TSource">source之項目的型別。(Source type.)</typeparam>
         /// <param name="weightPropertyName">作為權重之屬性的名稱。(Name of the property that will be used as weight.)</param>
-        /// <param name="rnd"></param>
+        /// <param name="rnd">已建立之隨機物件。(Constructed random object.)</param>
         /// <returns>抽樣結果之物件。(Object of sampling result.)</returns>
         public static TSource Sampling<TSource>(this IEnumerable<TSource> source, string weightPropertyName, Random rnd)
         {
@@ -207,6 +207,150 @@ namespace System.Collections.Generic.CollectionSampling
         public static TSource Sampling<TSource>(this IEnumerable<TSource> source, string weightPropertyName)
         {
             return source.ElementAt<TSource>(source.SamplingIndex<TSource>(weightPropertyName));
+        }
+
+        /// <summary>
+        /// 對字典之值進行隨機抽樣。
+        /// (Do the random sampling to dictionary's values.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="rnd">已建立之隨機物件。(Constructed random object.)</param>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之值。(Value of sampling result.)</returns>
+        public static TValue Sampling<TKey, TValue>(this Dictionary<TKey, TValue> source, Random rnd, bool weightOnKey = false)
+        {
+            if (weightOnKey)
+            {
+                return source.Values.ToArray<TValue>()[source.Keys.SamplingIndex<TKey>(rnd)];
+            }
+            else
+            {
+                return source.Values.Sampling<TValue>(rnd);
+            }
+        }
+
+        /// <summary>
+        /// 對字典之值進行隨機抽樣。
+        /// (Do the random sampling to dictionary's values.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之值。(Value of sampling result.)</returns>
+        public static TValue Sampling<TKey, TValue>(this Dictionary<TKey, TValue> source, bool weightOnKey = false)
+        {
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            return source.Sampling<TKey, TValue>(rnd, weightOnKey);
+        }
+
+        /// <summary>
+        /// 對字典之索引進行隨機抽樣。
+        /// (Do the random sampling to dictionary's keys.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="rnd">已建立之隨機物件。(Constructed random object.)</param>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之索引。(Key of sampling result.)</returns>
+        public static TKey SamplingKey<TKey, TValue>(this Dictionary<TKey, TValue> source, Random rnd, bool weightOnKey = false)
+        {
+            if (weightOnKey)
+            {
+                return source.Keys.Sampling<TKey>(rnd);
+            }
+            else
+            {
+                return source.Keys.ToArray<TKey>()[source.Values.SamplingIndex<TValue>(rnd)];
+            }
+        }
+
+        /// <summary>
+        /// 對字典之索引進行隨機抽樣。
+        /// (Do the random sampling to dictionary's keys.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之索引。(Key of sampling result.)</returns>
+        public static TKey SamplingKey<TKey, TValue>(this Dictionary<TKey, TValue> source, bool weightOnKey = false)
+        {
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            return source.SamplingKey<TKey, TValue>(rnd, weightOnKey);
+        }
+
+        /// <summary>
+        /// 對字典之值進行隨機抽樣。
+        /// (Do the random sampling to dictionary's values.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="weightPropertyName">作為權重之屬性的名稱。(Name of the property that will be used as weight.)</param>
+        /// <param name="rnd">已建立之隨機物件。(Constructed random object.)</param>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之值。(Value of sampling result.)</returns>
+        public static TValue Sampling<TKey, TValue>(this Dictionary<TKey, TValue> source, string weightPropertyName, Random rnd, bool weightOnKey = false)
+        {
+            if (weightOnKey)
+            {
+                return source.Values.ToArray<TValue>()[source.Keys.SamplingIndex<TKey>(weightPropertyName, rnd)];
+            }
+            else
+            {
+                return source.Values.Sampling<TValue>(weightPropertyName, rnd);
+            }
+        }
+
+        /// <summary>
+        /// 對字典之值進行隨機抽樣。
+        /// (Do the random sampling to dictionary's values.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="weightPropertyName">作為權重之屬性的名稱。(Name of the property that will be used as weight.)</param>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之值。(Value of sampling result.)</returns>
+        public static TValue Sampling<TKey, TValue>(this Dictionary<TKey, TValue> source, string weightPropertyName, bool weightOnKey = false)
+        {
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            return source.Sampling<TKey, TValue>(weightPropertyName, rnd, weightOnKey);
+        }
+
+        /// <summary>
+        /// 對字典之索引進行隨機抽樣。
+        /// (Do the random sampling to dictionary's keys.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="weightPropertyName">作為權重之屬性的名稱。(Name of the property that will be used as weight.)</param>
+        /// <param name="rnd">已建立之隨機物件。(Constructed random object.)</param>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之索引。(Key of sampling result.)</returns>
+        public static TKey SamplingKey<TKey, TValue>(this Dictionary<TKey, TValue> source, string weightPropertyName, Random rnd, bool weightOnKey = false)
+        {
+            if (weightOnKey)
+            {
+                return source.Keys.Sampling<TKey>(weightPropertyName, rnd);
+            }
+            else
+            {
+                return source.Keys.ToArray<TKey>()[source.Values.SamplingIndex<TValue>(weightPropertyName, rnd)];
+            }
+        }
+
+        /// <summary>
+        /// 對字典之索引進行隨機抽樣。
+        /// (Do the random sampling to dictionary's keys.)
+        /// </summary>
+        /// <typeparam name="TKey">索引的型別。(Key type.)</typeparam>
+        /// <typeparam name="TValue">值的型別。(Value type.)</typeparam>
+        /// <param name="weightPropertyName">作為權重之屬性的名稱。(Name of the property that will be used as weight.)</param>
+        /// <param name="weightOnKey">是否使用索引作為權重，預設為否。(Whehter use keys as weight or not, false by default.)</param>
+        /// <returns>抽樣結果之索引。(Key of sampling result.)</returns>
+        public static TKey SamplingKey<TKey, TValue>(this Dictionary<TKey, TValue> source, string weightPropertyName, bool weightOnKey = false)
+        {
+            Random rnd = new Random(Guid.NewGuid().GetHashCode());
+            return source.SamplingKey<TKey, TValue>(weightPropertyName, weightOnKey);
         }
 
         //type determine
