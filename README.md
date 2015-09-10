@@ -26,6 +26,7 @@ PM> Install-Package CollectionSampling
 using System.Collections.Generic.CollectionSampling;
 ```
 
+###Collection
 其中有兩個多載方法 There are two overloading method：
 ```C#
 int SamplingIndex<TSource>()
@@ -154,9 +155,57 @@ So the output will be one of AA, BB, or CC, and the weight is 5,3,6.
 
 Also, the object can use other collection type except Dictionary, and custom Random object, too.
 
+###Dictionary
+Dictionary包含另兩個多載方法There are other two method in Dictionary：
+```C#
+TValue Sampling<TKey, TValue>()
+TKey SamplingKey<TKey, TValue>()
+```
+第一個回傳抽樣結果的值，第二個則回傳抽樣結果的索引。
+
+The first one return value of the sampling result, second one return key of the sampling result.
+
+使用方式大部分與一般集合相同，但最後須指定額外布林參數，決定是否以索引作為抽樣的權重。
+
+Most part are same as normal collection, but you have to assign another boolean property, to determine whether use the key of the dictionary as weight or not.
+
+E.g.
+```C#
+Dictionary<int, string> dic = new Dictionary<int, string>(){
+    {4, "Eric"},
+    {5, "Allen"},
+    {2, "Apple"}
+};
+Console.WriteLine(dic.Sampling<int, string>(true));
+```
+結果會是Eric, Allen, Apple其中之一。
+
+The result will be one of Eric, Allen, Apple.
+
 #Exception
 當傳入非數值型別，或傳入類別的權重屬性未指定或非數值，則會產生例外：
 
 When giving the not numerical type, or not assign or not a number of property of giving class, there will be exception:
 
 `System.NotFiniteNumberException: Collection Element is not a Number.`
+
+***
+
+#Information
+###Latest Update
+2015/09/10
+
+###Version
+v1.1.0
+
+###System Requirements
+.NET Framework 4.5+
+
+###Version History
+####v1.1.0
+-加入Dictionary的部分。
+
+-修正部分說明文字。
+
+####v1.0.1
+-將.NET Framework版本修改為4.5以對應較舊版本的專案。
