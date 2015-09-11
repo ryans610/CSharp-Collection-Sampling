@@ -3,10 +3,10 @@ C#對集合類型(Dictionary除外)以權重進行抽樣。 以IEnumerable的泛
 
 C# Collection(except Dictionary) Sampling with weight. Base on IEnumerable generic extension method.
 
-#Language and Framework
+##Language and Framework
 C# .NET 4.5 above
 
-#How to Use
+##How to Use
 選擇其中一種：Choose one:
 
 1.下載CollectionSampling.cs加入專案中。Download CollectionSampling.cs file and add it into project.
@@ -182,7 +182,7 @@ Console.WriteLine(dic.Sampling<int, string>(true));
 
 The result will be one of Eric, Allen, Apple.
 
-#Exception
+##Exception
 當傳入非數值型別，或傳入類別的權重屬性未指定或非數值，則會產生例外：
 
 When giving the not numerical type, or not assign or not a number of property of giving class, there will be exception:
@@ -191,7 +191,7 @@ When giving the not numerical type, or not assign or not a number of property of
 
 ***
 
-#Information
+##Information
 ###Latest Update
 2015/09/10
 
