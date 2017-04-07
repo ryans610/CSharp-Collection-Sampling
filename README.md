@@ -1,12 +1,12 @@
 # CSharp-Collection-Sampling
-C#對集合類型(Dictionary除外)以權重進行抽樣。 以IEnumerable的泛型擴充方法撰寫。
+C#對集合類型以權重進行抽樣。 以IEnumerable的泛型擴充方法撰寫。
 
-C# Collection(except Dictionary) Sampling with weight. Base on IEnumerable generic extension method.
+C# Collection Sampling with weight. Base on IEnumerable generic extension method.
 
-##Language and Framework
+## Language and Framework
 C# .NET 4.5 above
 
-##How to Use
+## How to Use
 選擇其中一種：Choose one:
 
 1.下載CollectionSampling.cs加入專案中。Download CollectionSampling.cs file and add it into project.
@@ -26,7 +26,7 @@ PM> Install-Package CollectionSampling
 using System.Collections.Generic.CollectionSampling;
 ```
 
-###Collection
+### Collection
 其中有兩個多載方法 There are two overloading method：
 ```C#
 int SamplingIndex<TSource>()
@@ -155,7 +155,7 @@ So the output will be one of AA, BB, or CC, and the weight is 5,3,6.
 
 Also, the object can use other collection type except Dictionary, and custom Random object, too.
 
-###Dictionary
+### Dictionary
 Dictionary包含另兩個多載方法There are other two method in Dictionary：
 ```C#
 TValue Sampling<TKey, TValue>()
@@ -182,7 +182,7 @@ Console.WriteLine(dic.Sampling<int, string>(true));
 
 The result will be one of Eric, Allen, Apple.
 
-##Exception
+## Exception
 當傳入非數值型別，或傳入類別的權重屬性未指定或非數值，則會產生例外：
 
 When giving the not numerical type, or not assign or not a number of property of giving class, there will be exception:
@@ -191,21 +191,21 @@ When giving the not numerical type, or not assign or not a number of property of
 
 ***
 
-##Information
-###Latest Update
+## Information
+### Latest Update
 2015/09/10
 
-###Version
+### Version
 v1.1.0
 
-###System Requirements
+### System Requirements
 .NET Framework 4.5+
 
-###Version History
-####v1.1.0
+### Version History
+#### v1.1.0
 -加入Dictionary的部分。
 
 -修正部分說明文字。
 
-####v1.0.1
+#### v1.0.1
 -將.NET Framework版本修改為4.5以對應較舊版本的專案。
