@@ -1,4 +1,10 @@
 # CSharp-Collection-Sampling
+
+[![GitHub release](https://img.shields.io/github/release/ryans610/CSharp-Collection-Sampling.svg)](https://github.com/ryans610/CSharp-Collection-Sampling/releases)
+[![GitHub license](https://img.shields.io/github/license/ryans610/CSharp-Collection-Sampling.svg?style=plastic)](https://github.com/ryans610/CSharp-Collection-Sampling/blob/master/LICENSE)
+[![Nuget version](https://img.shields.io/nuget/v/CollectionSampling.svg)](https://www.nuget.org/packages/CollectionSampling/)
+[![Nuget download](https://img.shields.io/nuget/dt/CollectionSampling.svg)](https://www.nuget.org/packages/CollectionSampling/)
+
 C#對集合類型以權重進行抽樣。 以IEnumerable的泛型擴充方法撰寫。
 
 C# Collection Sampling with weight. Base on IEnumerable generic extension method.
